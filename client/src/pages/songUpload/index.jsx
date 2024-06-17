@@ -34,7 +34,7 @@ const SongUpload = () => {
     try {
       const token = localStorage.getItem('token')
       const response = await axios.post(
-        'http://localhost:5000/api/v5/s3/upload',
+        'https://nf-hw-backend-4-production-c5e0.up.railway.app/api/v5/s3/upload',
         formData,
         {
           headers: {
