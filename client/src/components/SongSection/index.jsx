@@ -8,7 +8,9 @@ export const Songsection = () => {
   const [songs, setSongs] = useState([])
   const fetchSongs = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/v5/s3/songs')
+      const response = await axios.get(
+        'https://nf-hw-backend-4-production-c5e0.up.railway.app/api/v5/s3/songs'
+      )
       console.log(response.data)
       setSongs(response.data.songs)
     } catch (error) {
