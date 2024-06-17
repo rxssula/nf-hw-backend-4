@@ -1,16 +1,21 @@
-import React from "react";
-import { AiFillHome } from "react-icons/ai";
-import { BiLibrary } from "react-icons/bi";
-import { HiMagnifyingGlass } from "react-icons/hi2";
-import { RiAddBoxLine, RiCloseLine, RiHeartFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import UsersActivity from "../UsersAcitvity";
+import React from 'react'
+import { AiFillHome } from 'react-icons/ai'
+import { BiLibrary } from 'react-icons/bi'
+import { HiMagnifyingGlass } from 'react-icons/hi2'
+import {
+  RiAddBoxLine,
+  RiAddFill,
+  RiCloseLine,
+  RiHeartFill
+} from 'react-icons/ri'
+import { Link } from 'react-router-dom'
+import UsersActivity from '../UsersAcitvity'
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
   return (
     <div
       className={`bg-black fixed top-0 w-64 h-full p-6 flex flex-col justify-between ${
-        showSidebar ? "left-0" : "-left-full"
+        showSidebar ? 'left-0' : '-left-full'
       } md:left-0 transition-all duration-300 z-50`}
     >
       <div className="md:hidden absolute right-4 top-4">
@@ -58,6 +63,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
             </li>
             <li>
               <Link
+                to="/upload-song"
+                className="flex items-center gap-4 hover:text-gray-100 transition-colors"
+              >
+                <RiAddFill className="text-2xl" /> Upload a song
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="#"
                 className="flex items-center gap-4 hover:text-gray-100 transition-colors"
               >
@@ -99,7 +112,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         </nav>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

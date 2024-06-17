@@ -13,11 +13,10 @@ class AuthService {
   private readonly jwtRefreshSecret = process.env.JWT_REFRESH_SECRET!
 
   async registerUser(createUserDto: CreateUserDto): Promise<IUser> {
-    const { email, password, username } = createUserDto
+    const { password, username } = createUserDto
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const newUser = new UserModel({
-      email,
       username,
       password: hashedPassword
     })
@@ -27,14 +26,14 @@ class AuthService {
   }
 
   async loginUser(
-    email: string,
+    username: string,
     password: string
   ): Promise<{
     user: IUser
     accessToken: string
     refreshToken: string
   } | null> {
-    const user = await UserModel.findOne({ email })
+    const user = await UserModel.findOne({ username })
     if (!user) return null
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
@@ -53,14 +52,14 @@ class AuthService {
   }
 
   private generateJwt(user: IUser): string {
-    return jwt.sign({ id: user._id, email: user.email }, this.jwtSecret, {
+    return jwt.sign({ id: user._id, username: user.username }, this.jwtSecret, {
       expiresIn: '1h'
     })
   }
 
   private generateRefreshToken(user: IUser): string {
     return jwt.sign(
-      { id: user._id, email: user.email },
+      { id: user._id, username: user.username },
       this.jwtRefreshSecret,
       { expiresIn: '7d' }
     )

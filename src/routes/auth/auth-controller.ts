@@ -21,15 +21,15 @@ class AuthController {
 
   loginUser = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { email, password } = req.body
-      const result = await this.authService.loginUser(email, password)
+      const { username, password } = req.body
+      const result = await this.authService.loginUser(username, password)
       if (!result) {
-        res.status(401).json({ message: 'Invalid email or password' })
+        res.status(401).json({ message: 'Invalid username or password' })
         return
       }
       res.status(200).json(result)
     } catch (err) {
-      res.status(500).json({ message: 'Error logging in' })
+      res.status(500).json({ message: err })
     }
   }
 

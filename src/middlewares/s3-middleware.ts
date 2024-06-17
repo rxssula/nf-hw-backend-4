@@ -12,7 +12,7 @@ export const s3 = new S3({
 export const listBuckets = async () =>
   await s3
     .listBuckets()
-    .then((res) => res.Buckets)
+    .then((res) => console.log(res.Buckets))
     .catch((err) => console.log(`Error listing buckets: ${err.Code}`))
 
 export const createBucket = async (Bucket: string) =>
